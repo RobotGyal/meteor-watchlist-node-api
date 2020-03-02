@@ -1,9 +1,16 @@
 
+# Main watchlist route to show whats in watchlist
 GET http://localhost:8000/watchlist
 
 ###
 
+# Add meteor to watchlist
 GET http://localhost:8000/watchlist/5e5d90769dd38a3c47bdb851
+
+###
+
+# Delete meteor from watchlist
+DELETE http://localhost:8000/watchlist/delete/5e5d90769dd38a3c47bdb851
 
 
 ###

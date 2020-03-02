@@ -63,9 +63,16 @@ router.patch('/:meteor/edit', (req, res) => {
     console.log("PATCH ROUTE")
 });
 
-router.delete('/:meteor/delete', (req, res) => {
-    console.log("DELETE ROUTE")
-});
+
+// Delete a meteor from watchlist
+router.delete('/delete/:id', getMeteor, async (req, res) => {
+    try {
+      await res.meteor.remove()
+      res.json({ message: 'Meteor has been deleted' })
+    } catch(err) {
+      res.status(500).json({ message: err.message })
+    }
+  })
 
 
 
