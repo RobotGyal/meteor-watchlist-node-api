@@ -1,8 +1,7 @@
 const csvjson = require('csvjson');
 const fs= require('fs');
 
-var data = fs.readFileSync('api_meteor_data.csv', { encoding : 'utf8'});
-
+var data = fs.readFileSync('meteor_test_50.csv', { encoding : 'utf8'});
 
 var options = {
     delimiter : ',', // optional
@@ -10,7 +9,6 @@ var options = {
   };
   
 data = JSON.stringify(data)
-
 
 
 module.exports.data=data

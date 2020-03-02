@@ -1,14 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Meteor = require('../models/meteor')
-var bodyParser = require('body-parser')
-
 const r_file = require('../utils/read-file')
 
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({
-    extended: false
-})
 
 // HOME - Gets all meteor data and displays watchlist
 router.get('/', async (req, res) => {
@@ -23,15 +17,26 @@ router.get('/', async (req, res) => {
         })
     }
 });
-
-// VIEW one meteor
-router.get('/:meteor', (req, res) => {
-    console.log("VIEW ROUTE")
+// ADD one meteor to watchlist
+router.get('/add', (req, res) => {
+    // var meteor = new Meteor(req.body)
+    res.render('add-meteor')
 });
 
 // ADD one meteor to watchlist
 router.post('/add', (req, res) => {
-    var meteor = new Meteor(req.body)
+    // var meteor = new Meteor(req.body)
+    // res.render('add-meteor')
+});
+
+
+router.get('/all', (req, res) => {
+    res.send(r_file.data)
+})
+
+// VIEW one meteor
+router.get('/:meteor', (req, res) => {
+    console.log("VIEW ROUTE")
 });
 
 

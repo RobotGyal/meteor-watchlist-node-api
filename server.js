@@ -5,6 +5,11 @@ const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+const exhdbs = require('express-handlebars')
+
+
+app.engine('handlebars', exhdbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // Database - Mongoose 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -18,6 +23,7 @@ var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
 })
+
 
 
 const watchlistRouter = require('./controllers/watchlist')
