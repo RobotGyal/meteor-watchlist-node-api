@@ -3,11 +3,11 @@ const express = require('express')
 const r_file = require('./utils/read-file')
 const app = express();
 
-data_json = JSON.stringify(r_file.data)
+// data_json = JSON.stringify(r_file.data)
 
 // HOME - Gets all meteor data and displays watchlist
 app.get('/', (req, res) => {
-    res.send(data_json)
+    res.send(r_file.data)
     console.log("Converted!")
 });
 
@@ -29,6 +29,21 @@ app.patch('/:meteor/edit', (req, res) => {
 app.delete('/:meteor/delete', (req, res) => {
     console.log("DELETE ROUTE")
 });
+
+// VIEW meteors in a location
+// LATER
+app.get('/:city', (req, res) => {
+    console.log("VIEW ROUTE")
+});
+
+// VIEW meteors in a location radius
+// LATER
+app.get('/:city/:radius', (req, res) => {
+    console.log("VIEW ROUTE")
+});
+
+
+
 
 
 
