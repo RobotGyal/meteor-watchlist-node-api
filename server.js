@@ -2,9 +2,9 @@
 require('dotenv').config()
 
 const express = require('express')
-const r_file = require('./utils/read-file')
 const app = express();
 const mongoose = require('mongoose')
+
 
 
 // Database - Mongoose 
@@ -13,13 +13,26 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to database'))
 
+// Middleware - express
+app.use(express.json())
+
+
 // data_json = JSON.stringify(r_file.data)
 
+const watchlistRouter = require('./routes/watchlist')
+app.use('/watchlist', watchlistRouter)
+
+// ROUTES
 // HOME - Gets all meteor data and displays watchlist
+// app.get('/', (req, res) => {
+//     res.send(r_file.data)
+//     console.log("Converted!")
+// });
+
 app.get('/', (req, res) => {
-    res.send(r_file.data)
-    console.log("Converted!")
+    res.send("Homepage")
 });
+
 
 // VIEW one meteor
 app.get('/:meteor', (req, res) => {
