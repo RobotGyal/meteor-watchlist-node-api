@@ -1,7 +1,17 @@
 // Requirements
+require('dotenv').config()
+
 const express = require('express')
 const r_file = require('./utils/read-file')
 const app = express();
+const mongoose = require('mongoose')
+
+
+// Database - Mongoose 
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to database'))
 
 // data_json = JSON.stringify(r_file.data)
 
