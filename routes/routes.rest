@@ -1,2 +1,17 @@
 
 GET http://localhost:8000/watchlist
+
+###
+
+POST http://localhost:8000/watchlist/add
+Content-Type: application/json
+
+{
+    "name": "Alpha",
+    "id": 1,
+    "nametype": "big",
+    "class":; "first class",
+    "mass": 123,
+    "fall": "True",
+    "year": 20000
+}

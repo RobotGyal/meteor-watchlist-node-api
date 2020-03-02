@@ -10,7 +10,7 @@ const meteorSchema = new mongoose.Schema({
     year: {type: Date, required:true},
     lat: {type: mongoose.Types.Decimal128, required:false},
     long: {type: mongoose.Types.Decimal128, required:false},
-    geolocation: {type: _type_, required:false}
+    geolocation: {type: Object, required:false}
 })
 
 module.exports = mongoose.model('Meteor', meteorSchema)
