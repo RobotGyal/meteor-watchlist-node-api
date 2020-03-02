@@ -17,6 +17,44 @@ router.get('/', async (req, res) => {
         })
     }
 });
+
+
+
+// Create one meteor
+router.post('/', async (req, res) => {
+    const meteor = new Meteor({
+      name: req.body.name,
+      id: req.body.id,
+      nametype: req.body.nametype,
+      class: req.body.class,
+      mass: req.body.mass,
+      fall: req.body.fall,
+      year: req.body.year
+    //   lat: req.body.name,
+    //   long: req.body.name,
+    //   geolocation: req.body.geo
+    })
+  
+    try {
+      const newMeteor = await meteor.save()
+      res.status(201).json(newMeteor)
+    } catch (err) {
+      res.status(400).json({ message: err.message })
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ADD one meteor to watchlist
 router.get('/add', (req, res) => {
     // var meteor = new Meteor(req.body)

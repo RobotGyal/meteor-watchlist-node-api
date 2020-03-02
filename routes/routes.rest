@@ -3,7 +3,7 @@ GET http://localhost:8000/watchlist
 
 ###
 
-GET http://localhost:8000/watchlist/add
+POST http://localhost:8000/watchlist/
 Content-Type: application/json
 
 {
@@ -12,6 +12,6 @@ Content-Type: application/json
     "nametype": "big",
     "class": "first class",
     "mass": 123,
-    "fall": "True",
+    "fall": true,
     "year": 20000
 }

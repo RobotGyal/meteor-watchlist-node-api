@@ -6,12 +6,12 @@ const meteorSchema = new Schema({
     id: {type: Number, required:true},
     nametype: {type: String, required:true},
     class: {type: String, required:true},
-    mass: {type: mongoose.Types.Decimal128, required:true},
+    mass: {type: Number, required:true},
     fall: {type: Boolean, required:true},
     year: {type: Date, required:true},
-    lat: {type: mongoose.Types.Decimal128, required:false},
-    long: {type: mongoose.Types.Decimal128, required:false},
-    geolocation: {type: Object, required:false}
+    // lat: {type: mongoose.Types.Decimal128, required:false},
+    // long: {type: mongoose.Types.Decimal128, required:false},
+    // geolocation: {type: Object, required:false}
 })
 
 module.exports = mongoose.model('Meteor', meteorSchema)
