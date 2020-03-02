@@ -4,7 +4,7 @@ GET http://localhost:8000/watchlist
 
 ###
 
-# Add meteor to watchlist
+# View one meteor on watchlist
 GET http://localhost:8000/watchlist/5e5d90769dd38a3c47bdb851
 
 ###
@@ -15,6 +15,7 @@ DELETE http://localhost:8000/watchlist/delete/5e5d90769dd38a3c47bdb851
 
 ###
 
+# Add meteor to watchlist
 POST http://localhost:8000/watchlist/add
 Content-Type: application/json
 
@@ -26,4 +27,13 @@ Content-Type: application/json
     "mass": 6789,
     "fall": false,
     "year": 1567
+}
+
+###
+
+PATCH http://localhost:8000/watchlist/edit/
+Content-Type: application/json 
+
+{
+  "name": "Trident"
 }

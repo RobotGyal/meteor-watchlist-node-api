@@ -59,9 +59,20 @@ router.get('/:id', getMeteor, (req, res) => {
 
 
 
-router.patch('/:meteor/edit', (req, res) => {
-    console.log("PATCH ROUTE")
-});
+router.patch('/edit/:id', getMeteor, async (req, res) => {
+    if (req.body.name != null) {
+        res.meteor.name = req.body.name
+    }
+    if (req.body.class != null) {
+        res.meteor.class = req.body.class
+    }
+    try {
+        const updatedMeteor = await res.meteor.save()
+        res.json(updatedMeteor)
+    } catch {
+        res.status(400).json({ message: err.message })
+    }
+}); 
 
 
 // Delete a meteor from watchlist
