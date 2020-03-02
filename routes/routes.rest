@@ -3,15 +3,20 @@ GET http://localhost:8000/watchlist
 
 ###
 
-POST http://localhost:8000/watchlist/
+GET http://localhost:8000/watchlist/5e5d90769dd38a3c47bdb851
+
+
+###
+
+POST http://localhost:8000/watchlist/add
 Content-Type: application/json
 
 {
-    "name": "Alpha",
-    "id": 1,
-    "nametype": "big",
-    "class": "first class",
-    "mass": 123,
-    "fall": true,
-    "year": 20000
+    "name": "Beta",
+    "id": 3,
+    "nametype": "icy",
+    "class": "third class",
+    "mass": 6789,
+    "fall": false,
+    "year": 1567
 }

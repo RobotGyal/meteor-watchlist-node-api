@@ -4,7 +4,7 @@ const Meteor = require('../models/meteor')
 const r_file = require('../utils/read-file')
 
 
-// HOME - Gets all meteor data and displays watchlist
+// Displays watchlist
 router.get('/', async (req, res) => {
     // res.send(r_file.data)
     // console.log("Converted!")
@@ -19,9 +19,8 @@ router.get('/', async (req, res) => {
 });
 
 
-
 // Create one meteor
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
     const meteor = new Meteor({
       name: req.body.name,
       id: req.body.id,
@@ -44,28 +43,8 @@ router.post('/', async (req, res) => {
   })
 
 
-
-
-
-
-
-
-
-
-
-
-
-// ADD one meteor to watchlist
-router.get('/add', (req, res) => {
-    // var meteor = new Meteor(req.body)
-    res.render('add-meteor')
-});
-
-// ADD one meteor to watchlist
-router.post('/add', (req, res) => {
-    // var meteor = new Meteor(req.body)
-    // res.render('add-meteor')
-});
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// TODO: 
 
 
 router.get('/all', (req, res) => {
@@ -73,8 +52,9 @@ router.get('/all', (req, res) => {
 })
 
 // VIEW one meteor
-router.get('/:meteor', (req, res) => {
-    console.log("VIEW ROUTE")
+router.get('/:id', getMeteor, (req, res) => {
+    // console.log("VIEW ROUTE")
+    res.json(res.meteor)
 });
 
 
@@ -87,16 +67,25 @@ router.delete('/:meteor/delete', (req, res) => {
     console.log("DELETE ROUTE")
 });
 
-// VIEW meteors in a location
-// LATER
-router.get('/:city', (req, res) => {
-    console.log("VIEW ROUTE")
-});
 
-// VIEW meteors in a location radius
-// LATER
-router.get('/:city/:radius', (req, res) => {
-    console.log("VIEW ROUTE")
-});
+
+
+// Middleware
+
+async function getMeteor(req, res, next) {
+    try {
+      meteor = await Meteor.findById(req.params.id)
+      if (meteor == null) {
+        return res.status(404).json({ message: 'Meteor does not exist'})
+      }
+    } catch(err){
+      return res.status(500).json({ message: err.message })
+    }
+    res.meteor = meteor
+    next()
+  }
+
+
+
 
 module.exports = router
