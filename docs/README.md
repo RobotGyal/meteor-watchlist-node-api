@@ -5,6 +5,11 @@
 
 ---
 
+# Full Documentation (via Docsify)
+https://robotgyal.github.io/meteor-watchlist-node-api/#/
+
+----
+
 # Introduction
 ## What does your API do?
 This API allows users to create their own meteors! This allows for later viewing, editing, and deleting.
