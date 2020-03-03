@@ -43,3 +43,11 @@ Content-Type: application/json
 
 # View all meteorites in dataset
 GET http://localhost:8000/watchlist/all
+
+###
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#AUTH
+
+#sign up get route
+http://localhost:8000/sign-up

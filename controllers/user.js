@@ -4,12 +4,14 @@ const jwt = require('jsonwebtoken');
 module.exports = (app) => {
     // SIGN UP FORM
     app.get("/sign-up", (req, res) => {
-        res.render("sign-up");
+        // res.render("sign-up");
+        res.send("Sign Up GET route")
     });
 
     // SIGN UP POST
     app.post("/sign-up", (req, res) => {
         // Create User and JWT
+        res.send("Sign Up POST route")
         const user = new User(req.body);
 
         user.save().then((user) => {
@@ -35,13 +37,15 @@ module.exports = (app) => {
     // LOGOUT
     app.get('/logout', (req, res) => {
         res.clearCookie('nToken');
-        res.redirect('/');
+        // res.redirect('/');
+        res.send("Logout GET route")
     });
 
 
     // LOGIN FORM
     app.get('/login', (req, res) => {
-        res.render('login');
+        // res.render('login');
+        res.send("Login GET route")
     });
 
 
@@ -49,6 +53,7 @@ module.exports = (app) => {
     app.post("/login", (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
+        res.send("Login POST route")
         // Find this user name
         User.findOne({
                 username

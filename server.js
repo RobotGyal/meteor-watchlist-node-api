@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 
 
 //Controller
-require('./controllers/auth.js')(app);
+require('./controllers/user.js')(app);
 
 
 app.listen(8000, () => {
