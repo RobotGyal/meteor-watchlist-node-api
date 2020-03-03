@@ -6,8 +6,26 @@ const app = express();
 const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 const exhdbs = require('express-handlebars')
+var cookieParser = require('cookie-parser');
+app.use(cookieParser()); // Add this after you initialize express.
+const jwt = require('jsonwebtoken');
 
 
+// Authentication 
+var checkAuth = (req, res, next) => {
+    console.log("Checking authentication");
+    if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+      req.user = null;
+    } else {
+      var token = req.cookies.nToken;
+      var decodedToken = jwt.decode(token, { complete: true }) || {};
+      req.user = decodedToken.payload;
+    }
+    next();
+  };
+app.use(checkAuth);
+
+// Handlebars
 app.engine('handlebars', exhdbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -30,7 +48,6 @@ var urlencodedParser = bodyParser.urlencoded({
 })
 
 
-
 const watchlistRouter = require('./controllers/watchlist')
 app.use('/watchlist', watchlistRouter)
 
@@ -38,6 +55,9 @@ app.get('/', (req, res) => {
     res.send("Homepage")
 });
 
+
+//Controller
+require('./controllers/auth.js')(app);
 
 
 app.listen(8000, () => {
