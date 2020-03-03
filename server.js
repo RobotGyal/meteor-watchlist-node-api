@@ -11,11 +11,16 @@ const exhdbs = require('express-handlebars')
 app.engine('handlebars', exhdbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// Database - Mongoose 
+// Database - Watchlist
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected to database'))
+db.once('open', () => console.log('Database 1 connected : Watchlist'))
+
+// //Databse - Meteors from dataset
+// const tester = mongoose.connection
+// tester.on('error', (error) => console.error(error))
+// tester.once('open', () => console.log('Database 2 connected : Dataset Meteors'))
 
 // Middleware - express
 app.use(express.json())

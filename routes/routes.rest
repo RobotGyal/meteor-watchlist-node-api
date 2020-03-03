@@ -31,9 +31,15 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:8000/watchlist/edit/
+# Update meteor from watchlist
+PATCH http://localhost:8000/watchlist/edit/5e5d8c89858e063923584223
 Content-Type: application/json 
 
 {
   "name": "Trident"
 }
+
+###
+
+# View all meteorites in dataset
+GET http://localhost:8000/watchlist/all

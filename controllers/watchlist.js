@@ -4,7 +4,10 @@ const Meteor = require('../models/meteor')
 const r_file = require('../utils/read-file')
 
 
-// Displays watchlist
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+// Displays entire watchlist
 router.get('/', async (req, res) => {
     // res.send(r_file.data)
     // console.log("Converted!")
@@ -17,7 +20,6 @@ router.get('/', async (req, res) => {
         })
     }
 });
-
 
 // Create one meteor
 router.post('/add', async (req, res) => {
@@ -42,11 +44,9 @@ router.post('/add', async (req, res) => {
     }
   })
 
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// TODO: 
-
-
+/* Displays all meteors in the meteor database.
+This data comes from the actual dataset
+can be viewed but not edited or deleted */
 router.get('/all', (req, res) => {
     res.send(r_file.data)
 })
@@ -87,8 +87,9 @@ router.delete('/delete/:id', getMeteor, async (req, res) => {
 
 
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// Middleware
+// Helper Function
 
 async function getMeteor(req, res, next) {
     try {
