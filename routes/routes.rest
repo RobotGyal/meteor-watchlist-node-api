@@ -58,6 +58,13 @@ GET http://localhost:8000/sign-up
 
 # sign up post route
 POST http://localhost:8000/sign-up
+Content-Type: application/json
+
+{
+    "username": "Leona",
+    "email": "leona@email.com",
+    "password": "password321"
+}
 
 ###
 

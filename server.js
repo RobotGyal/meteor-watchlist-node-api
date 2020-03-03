@@ -1,4 +1,5 @@
 // Requirements
+const dotenv =require('dotenv');
 require('dotenv').config()
 
 const express = require('express')
@@ -7,8 +8,8 @@ const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 const exhdbs = require('express-handlebars')
 var cookieParser = require('cookie-parser');
-app.use(cookieParser()); // Add this after you initialize express.
 const jwt = require('jsonwebtoken');
+app.use(cookieParser()); // Add this after you initialize express.
 
 
 // Authentication 
