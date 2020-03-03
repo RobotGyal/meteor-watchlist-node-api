@@ -36,32 +36,51 @@ Is there a limit to the number of requests an user can send?
 # Routes
 
 ## '.../watchlist/'
-```http://localhost:8000/watchlist```
+```
+GET
+http://localhost:8000/watchlist
+
+```
 
 Main watchlist route to show whats in watchlist
 
 ## '.../watchlist/:id'
-```http://localhost:8000/watchlist/:id```
+```
+GET
+http://localhost:8000/watchlist/:id
+```
 
 View one meteor on watchlist
 
 ## '.../watchlist/delete/:id/'
-```http://localhost:8000/watchlist/delete/:id```
+```
+DELETE
+http://localhost:8000/watchlist/delete/:id
+```
 
 Delete meteor from watchlist
 
 ## '.../watchlist/edit/:id'
-```http://localhost:8000/watchlist/edit/:id```
+```
+PATCH
+http://localhost:8000/watchlist/edit/:id
+```
 
 Update meteor from watchlist
 
 ## '.../watchlist/add'
-```http://localhost:8000/watchlist/add```
+```
+POST
+http://localhost:8000/watchlist/add
+```
 
 Add meteor to watchlist
 
 ## '.../watchlist/all'
-```http://localhost:8000/watchlist/all```
+```
+GET
+http://localhost:8000/watchlist/all
+```
 
 View all meteorites in the dataset as json
 
