@@ -52,6 +52,7 @@ Main watchlist route to show whats in watchlist
 ---
 
 # Meteor Watchlist Routes
+> The following as locked without authentication
 
 ## '/'
 ```
@@ -59,7 +60,7 @@ GET
 http://localhost:800/
 
 ```
-show homepage, locked without authentication
+show homepage
 
 ## '.../watchlist/'
 ```
