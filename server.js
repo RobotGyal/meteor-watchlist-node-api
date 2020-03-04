@@ -39,6 +39,11 @@ var urlencodedParser = bodyParser.urlencoded({
 const watchlistRouter = require('./controllers/watchlist')
 app.use('/watchlist', watchlistRouter)
 
+const userRouter = require('./controllers/user')
+app.use('/login', userRouter)
+
+
+
 app.get('/', verifyToken, (req, res) => {
   jwt.verify(req.token, 'secretkey', (err, authData) => {
     if (err) {
@@ -71,7 +76,7 @@ app.post('/login', (req, res) => {
 });
 
 
-// VErify Token
+// Verify Token
 function verifyToken(req, res, next){
     // get auth header
     const bearerHeader = req.headers['auth'];
