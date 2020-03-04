@@ -24,21 +24,43 @@ The data at watchlist/all is from the NASA datset
 
 # Authentication
 ## What is the preferred way of using the API?
+
 Through Postman
 
 ---
 
 # Error Codes
-What errors and status codes can a user expect?
+
+
+When attempting to access any route without authentication, expect a **`Status: 403`** error. To resolve, go to the `auth` route to acquire token for use in authentication.
 
 ---
 
-# Rate limit
-Is there a limit to the number of requests an user can send?
+# Authentication Routes
+
+## '.../auth/'
+```
+POST
+http://localhost:8000/auth
+
+```
+
+Main watchlist route to show whats in watchlist
+
 
 ---
 
-# Routes
+# Meteor Watchlist Routes
+> The following are locked without authentication
+
+
+## '/'
+```
+GET
+http://localhost:800/
+
+```
+show homepage
 
 ## '.../watchlist/'
 ```

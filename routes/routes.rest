@@ -43,3 +43,39 @@ Content-Type: application/json
 
 # View all meteorites in dataset
 GET http://localhost:8000/watchlist/all
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#AUTH
+
+###
+
+# # sign up get route
+# GET http://localhost:8000/sign-up
+
+# ###
+
+# # sign up post route
+# POST http://localhost:8000/sign-up
+# Content-Type: application/json
+
+# {
+#     "username": "Leona",
+#     "email": "leona@email.com",
+#     "password": "password321"
+# }
+
+###
+
+
+# login post route
+POST http://localhost:8000/auth
+Content-Type: application/json
+
+
+{
+        "id": 2,
+        "username": "karla",
+        "email": "karla@mail.com"
+}

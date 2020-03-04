@@ -31,9 +31,6 @@ router.post('/add', async (req, res) => {
       mass: req.body.mass,
       fall: req.body.fall,
       year: req.body.year
-    //   lat: req.body.name,
-    //   long: req.body.name,
-    //   geolocation: req.body.geo
     })
   
     try {
@@ -103,8 +100,5 @@ async function getMeteor(req, res, next) {
     res.meteor = meteor
     next()
   }
-
-
-
 
 module.exports = router
