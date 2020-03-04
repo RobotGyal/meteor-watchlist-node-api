@@ -11,7 +11,9 @@ var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 app.use(cookieParser()); // Add this after you initialize express.
 
-
+// For deployment
+const mongo_uri = process.env.MONGODB_URI
+mongoose.connect(mongo_uri)
 
 // Handlebars
 app.engine('handlebars', exhdbs({
@@ -111,8 +113,9 @@ function verifyToken(req, res, next) {
 
 //Controller
 // require('./controllers/user.js')(app);
+const port = process.env.PORT
+// app.listen(port)
 
-
-app.listen(8000, () => {
+app.listen(port, () => {
     console.log('Example app listening on port 8000!')
 });
