@@ -39,13 +39,23 @@ var urlencodedParser = bodyParser.urlencoded({
     extended: false
 })
 
+// For retrieving token
+app.post('/auth', (req, res) => {
+    // Mock user
+    const user = {
+        id: 2,
+        username: 'leona',
+        email: 'leona@mail.com'
+    }   
 
-const watchlistRouter = require('./controllers/watchlist')
-app.use(verifyToken)
-app.use('/watchlist', watchlistRouter)
-
-// const userRouter = require('./controllers/user')
-// app.use('/login', userRouter)
+    jwt.sign({
+        user
+    }, 'secretkey', (err, token) => {
+        res.json({
+            token
+        })
+    })
+});
 
 
 app.get('/', verifyToken, (req, res) => {
@@ -59,23 +69,13 @@ app.get('/', verifyToken, (req, res) => {
 });
 
 
-// For retrieving token
-app.post('/login', (req, res) => {
-    // Mock user
-    const user = {
-        id: 2,
-        username: 'leona',
-        email: 'leona@mail.com'
-    }   
 
-    jwt.sign({
-        user : user
-    }, 'secretkey', (err, token) => {
-        res.json({
-            token
-        })
-    })
-});
+const watchlistRouter = require('./controllers/watchlist')
+app.use(verifyToken)
+app.use('/watchlist', watchlistRouter)
+
+// const userRouter = require('./controllers/user')
+// app.use('/login', userRouter)
 
 
 // Verify Token

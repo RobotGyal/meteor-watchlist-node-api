@@ -51,35 +51,26 @@ GET http://localhost:8000/watchlist/all
 
 ###
 
-# sign up get route
-GET http://localhost:8000/sign-up
+# # sign up get route
+# GET http://localhost:8000/sign-up
+
+# ###
+
+# # sign up post route
+# POST http://localhost:8000/sign-up
+# Content-Type: application/json
+
+# {
+#     "username": "Leona",
+#     "email": "leona@email.com",
+#     "password": "password321"
+# }
 
 ###
 
-# sign up post route
-POST http://localhost:8000/sign-up
-Content-Type: application/json
-
-{
-    "username": "Leona",
-    "email": "leona@email.com",
-    "password": "password321"
-}
-
-###
-
-# logout get route
-GET http://localhost:8000/logout
-
-###
-
-# login get route
-GET http://localhost:8000/login
-
-###
 
 # login post route
-POST http://localhost:8000/login
+POST http://localhost:8000/auth
 Content-Type: application/json
 
 
