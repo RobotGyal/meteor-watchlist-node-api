@@ -41,6 +41,7 @@ var urlencodedParser = bodyParser.urlencoded({
 
 
 const watchlistRouter = require('./controllers/watchlist')
+app.use(verifyToken)
 app.use('/watchlist', watchlistRouter)
 
 // const userRouter = require('./controllers/user')
@@ -58,21 +59,17 @@ app.get('/', verifyToken, (req, res) => {
 });
 
 
-
-
-
-
-
+// For retrieving token
 app.post('/login', (req, res) => {
     // Mock user
     const user = {
         id: 2,
         username: 'leona',
         email: 'leona@mail.com'
-    }
+    }   
 
     jwt.sign({
-        user
+        user : user
     }, 'secretkey', (err, token) => {
         res.json({
             token
@@ -96,7 +93,7 @@ function verifyToken(req, res, next) {
         next()
     } else {
         // Forbidden
-        res.sendStatus(403)
+        res.status(403).send("Forbidden: This route is only available to authenticated users")
     }
 }
 
