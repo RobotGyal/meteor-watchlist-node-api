@@ -12,19 +12,6 @@ const jwt = require('jsonwebtoken');
 app.use(cookieParser()); // Add this after you initialize express.
 
 
-// Authentication 
-var checkAuth = (req, res, next) => {
-    console.log("Checking authentication");
-    if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
-      req.user = null;
-    } else {
-      var token = req.cookies.nToken;
-      var decodedToken = jwt.decode(token, { complete: true }) || {};
-      req.user = decodedToken.payload;
-    }
-    next();
-  };
-app.use(checkAuth);
 
 // Handlebars
 app.engine('handlebars', exhdbs({defaultLayout: 'main'}));
@@ -57,8 +44,54 @@ app.get('/', (req, res) => {
 });
 
 
+
+
+
+
+
+app.post('/login', (req, res) => {
+    // Mock user
+    const user = {
+        id: 1,
+        username: 'leona',
+        email: 'leona@mail.com'
+    }
+
+    jwt.sign({user:user}, 'secretkey', (err, token) =>{
+        res.json({
+            token
+        })
+    }) 
+});
+
+
+// VErify Token
+function verifyToken(req, res, next){
+    // get auth header
+    const bearerHeader = req.headers['auth'];
+    // Check if bearer is undefined
+    if( typeof bearerHeader !== 'undefined'){
+        pass
+    } else{
+        // Forbidden
+        res.sendStatus(403)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Controller
-require('./controllers/user.js')(app);
+// require('./controllers/user.js')(app);
 
 
 app.listen(8000, () => {
