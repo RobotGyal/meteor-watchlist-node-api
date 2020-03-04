@@ -39,8 +39,14 @@ var urlencodedParser = bodyParser.urlencoded({
 const watchlistRouter = require('./controllers/watchlist')
 app.use('/watchlist', watchlistRouter)
 
-app.get('/', (req, res) => {
-    res.send("Homepage")
+app.get('/', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.sendStatus(403)
+    }else{
+      res.send("Homepage")
+    }
+    })
 });
 
 
@@ -71,7 +77,13 @@ function verifyToken(req, res, next){
     const bearerHeader = req.headers['auth'];
     // Check if bearer is undefined
     if( typeof bearerHeader !== 'undefined'){
-        pass
+        // Split token 
+        const bearer = bearerHeader.split(" ")
+        // get token from split array
+        const bearerToken = bearer[1]
+        // Set token
+        req.token = bearerToken
+        next()
     } else{
         // Forbidden
         res.sendStatus(403)
