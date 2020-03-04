@@ -1,5 +1,5 @@
 // Requirements
-const dotenv =require('dotenv');
+const dotenv = require('dotenv');
 require('dotenv').config()
 
 const express = require('express')
@@ -14,11 +14,15 @@ app.use(cookieParser()); // Add this after you initialize express.
 
 
 // Handlebars
-app.engine('handlebars', exhdbs({defaultLayout: 'main'}));
+app.engine('handlebars', exhdbs({
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 // Database - Watchlist
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true
+})
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Database 1 connected : Watchlist'))
@@ -39,18 +43,17 @@ var urlencodedParser = bodyParser.urlencoded({
 const watchlistRouter = require('./controllers/watchlist')
 app.use('/watchlist', watchlistRouter)
 
-const userRouter = require('./controllers/user')
-app.use('/login', userRouter)
-
+// const userRouter = require('./controllers/user')
+// app.use('/login', userRouter)
 
 
 app.get('/', verifyToken, (req, res) => {
-  jwt.verify(req.token, 'secretkey', (err, authData) => {
-    if (err) {
-      res.sendStatus(403)
-    }else{
-      res.send("Homepage")
-    }
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403)
+        } else {
+            res.send("Homepage")
+        }
     })
 });
 
@@ -63,25 +66,27 @@ app.get('/', verifyToken, (req, res) => {
 app.post('/login', (req, res) => {
     // Mock user
     const user = {
-        id: 1,
+        id: 2,
         username: 'leona',
         email: 'leona@mail.com'
     }
 
-    jwt.sign({user:user}, 'secretkey', (err, token) =>{
+    jwt.sign({
+        user
+    }, 'secretkey', (err, token) => {
         res.json({
             token
         })
-    }) 
+    })
 });
 
 
 // Verify Token
-function verifyToken(req, res, next){
+function verifyToken(req, res, next) {
     // get auth header
     const bearerHeader = req.headers['auth'];
     // Check if bearer is undefined
-    if( typeof bearerHeader !== 'undefined'){
+    if (typeof bearerHeader !== 'undefined') {
         // Split token 
         const bearer = bearerHeader.split(" ")
         // get token from split array
@@ -89,7 +94,7 @@ function verifyToken(req, res, next){
         // Set token
         req.token = bearerToken
         next()
-    } else{
+    } else {
         // Forbidden
         res.sendStatus(403)
     }

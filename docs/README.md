@@ -38,7 +38,28 @@ Is there a limit to the number of requests an user can send?
 
 ---
 
-# Routes
+# Meteor Watchlist Routes
+
+## '.../login/'
+```
+POST
+http://localhost:8000/login
+
+```
+
+Main watchlist route to show whats in watchlist
+
+---
+
+# Meteor Watchlist Routes
+
+## '/'
+```
+GET
+http://localhost:800/
+
+```
+show homepage, locked without authentication
 
 ## '.../watchlist/'
 ```

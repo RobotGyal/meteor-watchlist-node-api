@@ -85,6 +85,6 @@ Content-Type: application/json
 
 {
         "id": 2,
-        "username": "karl",
-        "email": "karl@mail.com"
+        "username": "karla",
+        "email": "karla@mail.com"
 }
