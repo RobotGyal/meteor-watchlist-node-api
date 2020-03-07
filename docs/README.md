@@ -22,10 +22,32 @@ The data at watchlist/all is from the NASA datset
 
 ---
 
-# Authentication
-## What is the preferred way of using the API?
 
-Through Postman
+# How To Use
+
+1. __Through Postman__ (Preferred Method)
+    + First make sure to download [Postman](www.postman.com)
+    + Clone this repository locally
+    + Run your virtual environment on the folder (not required)
+    + Run  `npm install -all` to get all node dependencies
+    + Run  `pip3 install -r requirements.txt` to get all python dependencies
+    + Run `nodemon server.js` to launch the server. This is required to be able to test the routes through Postman
+    + Type in first route `localhost:8000/`
+        - This will produce the result 
+        - > Forbidden: This route is only available to authenticated users 
+        - This is because the routes are locked without proper authentication
+        ![Image](../forbidden.png)
+    + To get access go to the next route `localhost:8000/auth` as a **POST** request
+        - This will generate a token that needs to be used to gain access to the other routes (save this token!)
+        ![Image](../token.png)
+        - With the token saved, revisit the route `localhost:8000/`
+        - In postman, click the _headers_ tab
+        - Enter as the key `auth` and as the value the `bearer GENERATED_TOKEN`. 'bearer' must be in the value, followed by a space, followed by the token
+        ![Image](../auth.png)
+    + **This unlocks all routes!** 
+
+2. __Live Link__
+    * There is a live live available. It is hosted through [Heroku](www.heroku.com) however as this API only consists of backend rputing, the live link does not have content displayed. 
 
 ---
 
